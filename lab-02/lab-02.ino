@@ -12,9 +12,9 @@ bool buttonPressed(int pin, ButtonState &button);
 // Pin configuration
 const int emergencyButtonPin = 2;
 
-const int redLedPin = 8;
-const int yellowLedPin = 9;
-const int greenLedPin = 10;
+const int redLedPin = 4;
+const int yellowLedPin = 7;
+const int greenLedPin = 8;
 
 // Timing
 const unsigned long debounceDelay = 40;
@@ -70,6 +70,7 @@ void setup() {
 
     Serial.begin(9600);
 
+    Serial.println("GREEN");
     digitalWrite(greenLedPin, HIGH);
 
     stateStartTime = millis();
@@ -79,8 +80,14 @@ void loop() {
     bool emergencyPressed = buttonPressed(emergencyButtonPin, emergencyButton);
 
     // Emergency button handling
-    if(emergencyPressed){
+    if (emergencyPressed) {
+        currentState = RED;
+        Serial.println("EMERGENCY! -> RED");
+        digitalWrite(greenLedPin, LOW);
+        digitalWrite(yellowLedPin, LOW);
+        digitalWrite(redLedPin, HIGH);
 
+        stateStartTime = millis();
     }
 
     // Traffic light FSM
@@ -88,6 +95,7 @@ void loop() {
         case GREEN:
             if((millis() - stateStartTime) >= greenDuration ){
               currentState = YELLOW;
+              Serial.println("YELLOW");
               digitalWrite(greenLedPin, LOW);
               digitalWrite(yellowLedPin, HIGH);
               stateStartTime = millis();
@@ -97,6 +105,7 @@ void loop() {
         case YELLOW:
             if((millis() - stateStartTime) >= yellowDuration ){
               currentState = RED;
+              Serial.println("RED");
               digitalWrite(yellowLedPin, LOW);
               digitalWrite(redLedPin, HIGH);
               stateStartTime = millis();
@@ -104,8 +113,12 @@ void loop() {
             break;
 
         case RED:
-            if((millis() - stateStartTime) >= redDuration ){
+            // A pending press also blocks green until debouncing completes.
+            if (emergencyButton.lastRawState == HIGH &&
+                emergencyButton.stableState == HIGH &&
+                (millis() - stateStartTime) >= redDuration) {
               currentState = GREEN;
+              Serial.println("GREEN");
               digitalWrite(redLedPin, LOW);
               digitalWrite(greenLedPin, HIGH);
               stateStartTime = millis();
