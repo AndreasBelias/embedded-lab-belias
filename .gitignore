@@ -1,0 +1,50 @@
+
+# ==========================================
+# Arduino / Embedded Systems
+# ==========================================
+
+# Compiled firmware and build artifacts
+**/build/
+*.hex
+*.elf
+*.bin
+*.eep
+*.map
+*.o
+*.d
+
+# ==========================================
+# VS Code
+# ==========================================
+
+# Local editor settings
+.vscode/*
+!.vscode/tasks.json
+!.vscode/c_cpp_properties.json
+
+# ==========================================
+# Operating System / Temporary Files
+# ==========================================
+
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.tmp
+*.log
+
+# ==========================================
+# Python (future tooling)
+# ==========================================
+
+__pycache__/
+*.pyc
+.venv/
+
+# ==========================================
+# Environment / Secrets
+# ==========================================
+
+.env
+.env.*
+!.env.example

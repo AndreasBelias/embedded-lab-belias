@@ -1,0 +1,29 @@
+
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Arduino Project",
+      "type": "shell",
+      "command": "${env:HOME}/.local/bin/arduino-cli",
+      "args": [
+        "compile",
+        "--fqbn",
+        "arduino:avr:uno",
+        "--output-dir",
+        "${fileDirname}/build",
+        "${fileDirname}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    }
+  ]
+}
