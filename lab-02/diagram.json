@@ -87,7 +87,7 @@
     [ "emergencyButton:2.r", "bb1:2b.f", "", [ "$bb" ] ],
     [ "bb1:23b.h", "uno:4", "green", [ "v86.4", "h9.6" ] ],
     [ "bb1:14b.h", "uno:7", "green", [ "v76.8", "h9.6" ] ],
-    [ "bb1:5b.h", "uno:8", "green", [ "v96", "h134.4" ] ]
+    [ "bb1:5b.h", "uno:10", "green", [ "v96", "h115.2" ] ]
   ],
   "dependencies": {}
 }
