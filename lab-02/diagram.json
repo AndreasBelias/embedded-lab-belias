@@ -1,16 +1,110 @@
+
 {
   "version": 1,
   "author": "Andreas Belias",
   "editor": "wokwi",
   "parts": [
     {
+      "type": "wokwi-breadboard-half",
+      "id": "bb1",
+      "top": -243,
+      "left": -26,
+      "attrs": { "color": "#575756" }
+    },
+    {
       "type": "wokwi-arduino-uno",
       "id": "uno",
-      "top": 0,
-      "left": 0,
+      "top": 10.2,
+      "left": -0.6,
       "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "redLed",
+      "top": -166.8,
+      "left": 253.8,
+      "attrs": { "color": "red", "flip": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "yellowLed",
+      "top": -166.8,
+      "left": 167.4,
+      "attrs": { "color": "yellow", "flip": "1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "greenLed",
+      "top": -166.8,
+      "left": 81,
+      "attrs": { "color": "limegreen", "flip": "1" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -120.85,
+      "left": 211.2,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -120.85,
+      "left": 124.8,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -120.85,
+      "left": 38.4,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-pushbutton-6mm",
+      "id": "emergencyButton",
+      "top": -152.6,
+      "left": 4,
+      "rotate": 90,
+      "attrs": { "color": "green", "xray": "1" }
     }
   ],
-  "connections": [],
+  "connections": [
+    ["uno:GND.1", "bb1:bn.1", "black", ["v-9", "h-107.5"]],
+
+    ["bb1:12b.g", "bb1:bn.10", "black", ["v0"]],
+    ["bb1:21b.g", "bb1:bn.17", "black", ["v0"]],
+    ["bb1:30b.g", "bb1:bn.25", "black", ["v0"]],
+
+    ["bb1:5b.h", "uno:10", "green", ["v86.4", "h105.6"]],
+    ["bb1:14b.h", "uno:9", "green", ["v76.8", "h28.8"]],
+    ["bb1:23b.h", "uno:8", "green", ["v86.4", "h-38.4"]],
+
+    ["bb1:4b.g", "bb1:bn.3", "black", ["v0"]],
+    ["bb1:2b.g", "uno:2", "green", ["v0", "h-48", "v115.2", "h268.8"]],
+
+    ["redLed:A", "bb1:29b.f", "", ["$bb"]],
+    ["redLed:C", "bb1:30b.f", "", ["$bb"]],
+
+    ["yellowLed:A", "bb1:20b.f", "", ["$bb"]],
+    ["yellowLed:C", "bb1:21b.f", "", ["$bb"]],
+
+    ["greenLed:A", "bb1:11b.f", "", ["$bb"]],
+    ["greenLed:C", "bb1:12b.f", "", ["$bb"]],
+
+    ["r1:1", "bb1:23b.g", "", ["$bb"]],
+    ["r1:2", "bb1:29b.g", "", ["$bb"]],
+
+    ["r2:1", "bb1:14b.g", "", ["$bb"]],
+    ["r2:2", "bb1:20b.g", "", ["$bb"]],
+
+    ["r3:1", "bb1:5b.g", "", ["$bb"]],
+    ["r3:2", "bb1:11b.g", "", ["$bb"]],
+
+    ["emergencyButton:1.l", "bb1:4t.e", "", ["$bb"]],
+    ["emergencyButton:2.l", "bb1:2t.e", "", ["$bb"]],
+    ["emergencyButton:1.r", "bb1:4b.f", "", ["$bb"]],
+    ["emergencyButton:2.r", "bb1:2b.f", "", ["$bb"]]
+  ],
   "dependencies": {}
 }
